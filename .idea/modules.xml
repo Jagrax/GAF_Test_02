@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GAF [Test-02].iml" filepath="$PROJECT_DIR$/GAF [Test-02].iml" />
+      <module fileurl="file://$PROJECT_DIR$/gaf-ear/gaf-ear.iml" filepath="$PROJECT_DIR$/gaf-ear/gaf-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gaf-ejb/gaf-ejb.iml" filepath="$PROJECT_DIR$/gaf-ejb/gaf-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gaf-web/gaf-web.iml" filepath="$PROJECT_DIR$/gaf-web/gaf-web.iml" />
+    </modules>
+  </component>
+</project>

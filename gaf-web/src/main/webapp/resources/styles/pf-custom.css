@@ -1,0 +1,8 @@
+/* layout sin bordes */
+.ui-widget-content.ui-layout-unit {
+	border: 0;
+}
+
+.ui-layout-unit {
+	padding: 0;
+}

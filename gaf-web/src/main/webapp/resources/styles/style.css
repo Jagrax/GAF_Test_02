@@ -1,0 +1,46 @@
+.header {
+    background: #EEE;
+    float: right;
+    margin-right: 100px;
+    margin-top: 30px;
+}
+
+.header .ui-layout-unit-content {
+    width: 100%;
+    height: 97px;
+    background: url("/gaf-web/resources/images/top_aplicacion.jpg");
+    background-repeat: no-repeat;
+}
+
+.content {
+    padding: 10px 5px;
+}
+
+.button-nuevo span {
+    padding: 0 1em !important;
+}
+
+.footer .ui-layout-unit-content {
+    background: #9cb69c;
+    height: 40px;
+}
+
+.footer .footer_wrapper {
+    margin: 0 100px 0 20px;
+}
+
+.footer_wrapper .footer_copy {
+    float: left;
+}
+
+.navigation {
+    background: #89d1b7;
+}
+
+.navigation .ui-layout-unit-content {
+    background: #89d1b7;
+}
+
+.navigation-menu {
+    margin: 10px auto 0px auto;
+}

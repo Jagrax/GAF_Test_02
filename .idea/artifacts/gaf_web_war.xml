@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="gaf-web:war">
+    <output-path>$PROJECT_DIR$/gaf-web/target</output-path>
+    <root id="archive" name="gaf-web.war">
+      <element id="artifact" artifact-name="gaf-web:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    </f:facet>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>
+        <ui:insert name="title">...insertar titulo...</ui:insert>
+    </title>
+    <h:outputStylesheet library="styles" name="style.css" />
+</h:head>
+<h:body>
+
+    <f:facet name="last">
+        <h:outputStylesheet library="styles" name="pf-custom.css" />
+    </f:facet>
+
+    <p:layout fullPage="true">
+        <p:layoutUnit position="north" size="100" gutter="0" styleClass="header">
+            <!--
+            <h:panelGroup styleClass="status" rendered="#{sessionScope.cuentaSimpleSession.logged}">
+                <div>
+					<span id="operator"><p:outputLabel value="#{sessionScope.cuentaSimpleSession.operatorWAPI.name}@#{sessionScope.cuentaSimpleSession.operatorWAPI.companyWAPI.name}"
+                                                       title="#{sessionScope.cuentaSimpleSession.operatorWAPI.description}@#{sessionScope.cuentaSimpleSession.operatorWAPI.companyWAPI.razonSocial}"/></span>
+                    <span> | </span>
+                    <span id="processdate"><p:outputLabel value="#{sessionScope.cuentaSimpleSession.processDateAsString}"/></span>
+                </div>
+            </h:panelGroup>
+            -->
+        </p:layoutUnit>
+
+        <p:layoutUnit position="west" size="250" gutter="0" styleClass="navigation">
+            <h:form>
+                <p:menu styleClass="navigation-menu">
+                    <p:submenu label="GAF Menu">
+                        <p:menuitem outcome="MENU_TALLERES" value="Talleres" ajax="false"/>
+                        <p:menuitem outcome="MENU_CORTES" value="Cortes" ajax="false"/>
+                        <p:menuitem outcome="MENU_HISTORIAL" value="Historial" ajax="false" disabled="true"/>
+                        <p:separator/>
+                        <p:menuitem outcome="MENU_LOGOUT" value="Salir" ajax="false"/>
+                    </p:submenu>
+                </p:menu>
+            </h:form>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center" gutter="0" styleClass="content">
+            <p:messages id="mensajes" globalOnly="true" showDetail="true" closable="true"/>
+            <ui:insert name="body">Default Body</ui:insert>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="south" size="30" gutter="0" styleClass="footer">
+            <div class="footer_wrapper">
+                <div class="footer_copy">
+                    &copy; 2016 - GAF System
+                </div>
+            </div>
+        </p:layoutUnit>
+
+    </p:layout>
+</h:body>
+</html>
