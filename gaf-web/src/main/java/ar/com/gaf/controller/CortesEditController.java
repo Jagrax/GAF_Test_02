@@ -1,16 +1,94 @@
 package ar.com.gaf.controller;
 
+import ar.com.gaf.entity.Corte;
+import ar.com.gaf.entity.HojaDeCorte;
+import ar.com.gaf.entity.Status;
+import ar.com.gaf.entity.Taller;
+import org.jboss.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 @ManagedBean(name = "cortesEditController")
 @ViewScoped
 public class CortesEditController {
 
+    private static final Logger logger = Logger.getLogger(CortesEditController.class);
+
+    private Corte corte;
+    private List<Corte> cortes;
+
+    private enum ScreenMode {
+        LIST, EDIT
+    }
+
+    private ScreenMode screenMode;
+
     @PostConstruct
     public void init() {
 
+        // Genero unos talleres random como para poder settear algo en 'tallerId'
+        List<Taller> talleres = new ArrayList<>();
+        Taller taller;
+        for (int n = 0; n < 10; n++) {
+            taller = new Taller();
+            taller.setId((long) n);
+            taller.setName("Taller #" + (n + 1));
+            taller.setAddress("Calle false 123");
+            taller.setPhone("15-5555-5555");
+            taller.setStatus(new Status((long) n, "TRABAJANDO", "TRABAJANDO.png"));
+            taller.setEmployeesQuantity(75);
+            taller.setScore(10);
+            talleres.add(taller);
+        }
+
+        cortes = new ArrayList<>();
+        for (int n = 0; n < 10; n++) {
+            corte = new Corte();
+            corte.setId((long) n);
+            corte.setTitulo("7130/18961 | NMD | * | EN PROCESO");
+            corte.setCantPrendas(500);
+            GregorianCalendar calendar = new GregorianCalendar(2016, 10, 1);
+            corte.setFechaEntrega(calendar.getTime());
+            corte.setPrimerVencimiento(calendar.getTime());
+            corte.setPrecio(100.0);
+            corte.setTallerId(talleres.get(n)); // Id del taller en el que se esta operando con este corte
+            corte.setFromSize(40);
+            corte.setToSize(45);
+            corte.setHojaDeCorte(null);
+            corte.setStatus(new Status((long) 4, "EN PROCESO", "EN PROCESO.png"));
+            cortes.add(corte);
+        }
+        screenMode = ScreenMode.LIST;
     }
 
+    public Corte getCorte() {
+        return corte;
+    }
+
+    public void setCorte(Corte corte) {
+        this.corte = corte;
+    }
+
+    public List<Corte> getCortes() {
+        return cortes;
+    }
+
+    public void setCortes(List<Corte> cortes) {
+        this.cortes = cortes;
+    }
+
+    public ScreenMode getScreenMode() {
+        return screenMode;
+    }
+
+    public void setScreenMode(ScreenMode screenMode) {
+        this.screenMode = screenMode;
+    }
 }

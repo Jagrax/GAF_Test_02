@@ -9,70 +9,40 @@
         <ui:define name="title">GAF - Administración de cortes</ui:define>
         <ui:define name="body">
             <p:panel id="pnlAll" header="Administración de cortes">
-                <f:facet name="actions">
-                    <p:commandButton styleClass="button-nuevo ui-panel-titlebar-icon" value="Nuevo" actionListener="#{talleresEditController.nuevo}" update="pnlAll"
-                                     rendered="#{talleresEditController.screenMode == 'LIST'}"/>
-                </f:facet>
                 <h:form>
-                    <p:dataTable value="#{talleresEditController.talleres}" var="taller" rendered="#{talleresEditController.screenMode == 'LIST'}" paginator="true" rows="9"
-                                 paginatorPosition="bottom" scrollable="false" resizeMode="expand">
-                        <p:column width="16">
-                            <p:graphicImage value="/resources/images/#{taller.status.imageName}" title="#{taller.status.name}"/>
-                        </p:column>
-                        <p:column headerText="Name">
-                            <h:outputText value="#{taller.name}"/>
-                        </p:column>
-                        <p:column headerText="Address">
-                            <h:outputText value="#{taller.address}"/>
-                        </p:column>
-                        <p:column headerText="Phone #">
-                            <h:outputText value="#{taller.phone}"/>
-                        </p:column>
-                        <p:column headerText="Employees" width="100">
-                            <h:outputText value="#{taller.employeesQuantity}" style="float: right;"/>
-                        </p:column>
-                        <p:column headerText="Score" width="50">
-                            <h:outputText value="#{taller.score}" style="float: right;"/>
-                        </p:column>
-                        <p:column headerText="Actions" width="100" style="text-align: center">
-                            <p:commandButton icon="ui-icon-trash" action="#{talleresEditController.eliminar(taller)}" update="pnlAll"/>
-                            <p:commandButton icon="ui-icon-pencil" action="#{talleresEditController.editar(taller)}" update="pnlAll"/>
-                        </p:column>
-                    </p:dataTable>
-
-                    <h:panelGrid columns="2" rendered="#{talleresEditController.screenMode == 'EDIT'}">
-                        <p:outputLabel for="name" value="Nombre:"/>
-                        <h:inputText id="name" value="#{talleresEditController.taller.name}"/>
-
-                        <p:outputLabel for="address" value="Dirección:"/>
-                        <h:inputText id="address" value="#{talleresEditController.taller.address}"/>
-
-                        <p:outputLabel for="phone" value="Teléfono:"/>
-                        <h:inputText id="phone" value="#{talleresEditController.taller.phone}"/>
-
-                        <p:outputLabel for="status" value="Estado:"/>
-                        <p:selectOneMenu id="status" value="#{talleresEditController.status}" converter="statusConverter" panelStyle="width:180px" var="s"
-                                         style="width:160px">
-                            <f:selectItems value="#{talleresEditController.statusList}" var="status" itemLabel="#{status.name}" itemValue="#{status}"/>
-
-                            <p:column style="width:10%">
-                                <p:graphicImage value="/resources/images/#{s.imageName}"/>
-                            </p:column>
-
-                            <p:column>
-                                <h:outputText value="#{s.name}"/>
-                            </p:column>
-                        </p:selectOneMenu>
-
-                        <p:outputLabel for="employeesQuantity" value="Cantidad de empleados:"/>
-                        <h:inputText id="employeesQuantity" value="#{talleresEditController.taller.employeesQuantity}"/>
-
-                        <p:outputLabel for="score" value="Puntaje:"/>
-                        <h:inputText id="score" value="#{talleresEditController.taller.score}"/>
-
-                        <p:commandButton value="Cancelar" icon="ui-icon-cancel" action="#{talleresEditController.cancelar()}" update="pnlAll"/>
-                        <p:commandButton value="Guardar" icon="ui-icon-disk" action="#{talleresEditController.guardar()}" update="pnlAll"/>
-                    </h:panelGrid>
+                    <ui:repeat value="#{cortesEditController.cortes}" var="corte">
+                        <p:panel collapsed="true" header="#{corte.titulo}" toggleable="true">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="titulo" value="T&iacute;tulo:" style="font-weight:bold" />
+                                <h:outputText id="titulo" value="#{corte.titulo}" />
+                                <h:outputLabel for="cantPrendas" value="Cantidad de prendas:" style="font-weight:bold" />
+                                <h:outputText id="cantPrendas" value="#{corte.cantPrendas}" />
+                                <h:outputLabel for="primerVencimiento" value="Primer vencimiento:" style="font-weight:bold" />
+                                <h:outputText id="primerVencimiento" value="#{corte.primerVencimiento}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                                <h:outputLabel for="fechaEntrega" value="Fecha de entrega:" style="font-weight:bold" />
+                                <h:outputText id="fechaEntrega" value="#{corte.fechaEntrega}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                                <h:outputLabel for="talles" value="Talles:" style="font-weight:bold" />
+                                <h:panelGrid columns="3" id="talles">
+                                    <h:outputText id="fromSize" value="#{corte.fromSize}" />
+                                    <h:outputText value="-" />
+                                    <h:outputText id="toSize" value="#{corte.toSize}" />
+                                </h:panelGrid>
+                                <h:outputLabel for="taller" value="Taller:" style="font-weight:bold" />
+                                <h:outputText id="taller" value="#{corte.tallerId.name}" />
+                                <h:outputLabel for="precioPorCorte" value="Precio por corte:" style="font-weight:bold" />
+                                <h:outputText id="precioPorCorte" value="#{corte.precio}" />
+                                <h:outputLabel for="hojaDeCorte" value="Hoja de corte:" style="font-weight:bold" />
+                                <h:outputText id="hojaDeCorte" value="#{corte.hojaDeCorte}" />
+                                <h:outputLabel for="status" value="Estado:" style="font-weight:bold" />
+                                <h:outputText id="status" value="#{corte.status.name}" />
+                            </h:panelGrid>
+                        </p:panel>
+                        <p:separator/>
+                    </ui:repeat>
                 </h:form>
             </p:panel>
         </ui:define>
