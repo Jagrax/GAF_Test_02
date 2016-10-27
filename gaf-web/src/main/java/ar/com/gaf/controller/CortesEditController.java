@@ -10,10 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 @ManagedBean(name = "cortesEditController")
 @ViewScoped
@@ -32,6 +29,8 @@ public class CortesEditController {
 
     @PostConstruct
     public void init() {
+        Random rand = new Random();
+        int[] talles = {30, 35, 40, 45, 50};
 
         // Genero unos talleres random como para poder settear algo en 'tallerId'
         List<Taller> talleres = new ArrayList<>();
@@ -52,15 +51,17 @@ public class CortesEditController {
         for (int n = 0; n < 10; n++) {
             corte = new Corte();
             corte.setId((long) n);
-            corte.setTitulo("7130/18961 | NMD | * | EN PROCESO");
+            corte.setTitulo((rand.nextInt(8999) + 1000) + "/" + (rand.nextInt(9999) + 10000) + " | NMD | * | EN PROCESO");
             corte.setCantPrendas(500);
             GregorianCalendar calendar = new GregorianCalendar(2016, 10, 1);
             corte.setFechaEntrega(calendar.getTime());
+            calendar.set(GregorianCalendar.MONTH, 9);
+            calendar.set(GregorianCalendar.DAY_OF_MONTH, 30);
             corte.setPrimerVencimiento(calendar.getTime());
             corte.setPrecio(100.0);
             corte.setTallerId(talleres.get(n)); // Id del taller en el que se esta operando con este corte
-            corte.setFromSize(40);
-            corte.setToSize(45);
+            corte.setFromSize(talles[rand.nextInt(talles.length)]);
+            corte.setToSize(corte.getFromSize() + 5);
             corte.setHojaDeCorte(null);
             corte.setStatus(new Status((long) 4, "EN PROCESO", "EN PROCESO.png"));
             cortes.add(corte);

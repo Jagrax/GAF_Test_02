@@ -51,8 +51,8 @@
                         <h:inputText id="phone" value="#{talleresEditController.taller.phone}" required="true"/>
 
                         <p:outputLabel for="status" value="Estado:"/>
-                        <p:selectOneMenu id="status" value="#{talleresEditController.status}" converter="statusConverter" panelStyle="width:180px" var="s"
-                                         style="width:160px" required="true">
+                        <p:selectOneMenu id="status" value="#{talleresEditController.status}" converter="statusConverter" panelStyle="width:190px" var="s"
+                                         style="width:185px" required="true">
                             <f:selectItems value="#{talleresEditController.statusList}" var="status" itemLabel="#{status.name}" itemValue="#{status}"/>
 
                             <p:column style="width:10%">
@@ -64,13 +64,13 @@
                             </p:column>
                         </p:selectOneMenu>
 
-                        <p:outputLabel for="employeesQuantity" value="Cantidad de empleados:"/>0
+                        <p:outputLabel for="employeesQuantity" value="Cantidad de empleados:"/>
                         <h:inputText id="employeesQuantity" value="#{talleresEditController.taller.employeesQuantity}" required="true"/>
 
                         <p:outputLabel for="score" value="Puntaje:"/>
                         <h:inputText id="score" value="#{talleresEditController.taller.score}" required="true"/>
 
-                        <p:commandButton value="Cancelar" icon="ui-icon-cancel" action="#{talleresEditController.cancelar()}" update="pnlAll"/>
+                        <p:commandButton value="Cancelar" icon="ui-icon-cancel" action="#{talleresEditController.cancelar()}" update="pnlAll" immediate="true"/>
                         <p:commandButton value="Guardar" icon="ui-icon-disk" action="#{talleresEditController.guardar()}" update="pnlAll"/>
                     </h:panelGrid>
                 </h:form>

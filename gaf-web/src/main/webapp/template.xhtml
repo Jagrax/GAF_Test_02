@@ -21,25 +21,13 @@
     </f:facet>
 
     <p:layout fullPage="true">
-        <p:layoutUnit position="north" size="100" gutter="0" styleClass="header">
-            <!--
-            <h:panelGroup styleClass="status" rendered="#{sessionScope.cuentaSimpleSession.logged}">
-                <div>
-					<span id="operator"><p:outputLabel value="#{sessionScope.cuentaSimpleSession.operatorWAPI.name}@#{sessionScope.cuentaSimpleSession.operatorWAPI.companyWAPI.name}"
-                                                       title="#{sessionScope.cuentaSimpleSession.operatorWAPI.description}@#{sessionScope.cuentaSimpleSession.operatorWAPI.companyWAPI.razonSocial}"/></span>
-                    <span> | </span>
-                    <span id="processdate"><p:outputLabel value="#{sessionScope.cuentaSimpleSession.processDateAsString}"/></span>
-                </div>
-            </h:panelGroup>
-            -->
-        </p:layoutUnit>
-
         <p:layoutUnit position="west" size="250" gutter="0" styleClass="navigation">
             <h:form>
                 <p:menu styleClass="navigation-menu">
                     <p:submenu label="GAF Menu">
                         <p:menuitem outcome="MENU_TALLERES" value="Talleres" ajax="false"/>
                         <p:menuitem outcome="MENU_CORTES" value="Cortes" ajax="false"/>
+                        <p:menuitem outcome="MENU_HOJAS_DE_CORTE" value="Hojas de corte" ajax="false" disabled="true"/>
                         <p:menuitem outcome="MENU_HISTORIAL" value="Historial" ajax="false" disabled="true"/>
                         <p:separator/>
                         <p:menuitem outcome="MENU_LOGOUT" value="Salir" ajax="false"/>
@@ -52,15 +40,6 @@
             <p:messages id="mensajes" globalOnly="true" showDetail="true" closable="true"/>
             <ui:insert name="body">Default Body</ui:insert>
         </p:layoutUnit>
-
-        <p:layoutUnit position="south" size="30" gutter="0" styleClass="footer">
-            <div class="footer_wrapper">
-                <div class="footer_copy">
-                    &copy; 2016 - GAF System
-                </div>
-            </div>
-        </p:layoutUnit>
-
     </p:layout>
 </h:body>
 </html>
